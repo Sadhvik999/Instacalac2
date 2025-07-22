@@ -6,7 +6,6 @@ import SignupPage from './components/signup/signup';
 const App = () => (
   <Router>
     <Routes>
-      {/* <Route path='/' element={<Login/>}/> */}
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />}/>
       <Route path="/signup" element={<SignupPage />}/>

@@ -43,3 +43,9 @@
 .calculator-card button:hover {
   background-color: #e8a842;
 }
+
+@media (min-width: 600px) {
+  .calculator-section {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
