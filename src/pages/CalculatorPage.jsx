@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import LoanForm from '../components/calculator/LoanForm';
 import ResultsDisplay from '../components/calculator/ResultsDisplay';
 import InterestOnlyCalculator from './InterestOnlyCalculator';
-import EarlyPayoffCalculator from './EarlyPayoffCalculator';
 import './CalculatorPage.css';
 
 const CalculatorPage = () => {
@@ -11,15 +10,15 @@ const CalculatorPage = () => {
   const handleCalculate = ({ amount, rate, years }) => {
     const p = parseFloat(amount);
     const r = parseFloat(rate) / 100 / 12;
-    const n = parseFloat(years) * 12;
+    const n = parseFloat(years);
 
     if (isNaN(p) || p <= 0 || isNaN(r) || r < 0 || isNaN(n) || n <= 0) {
       alert('Please enter valid positive numbers for amount, rate, and years.');
       return;
     }
 
-    const monthly = (p * r * n);
-    const total = monthly * n + p;
+    const monthly = (p * r * Math.pow(1+r,n*12))/(Math.pow(1+r,n*12)-1)
+    const total = monthly * n * 12 ;
     const interest = total - p;
 
     setResults({
@@ -40,7 +39,6 @@ const CalculatorPage = () => {
         </div>
 
         <InterestOnlyCalculator />
-        <EarlyPayoffCalculator />
       </div>
     </div>
   );
